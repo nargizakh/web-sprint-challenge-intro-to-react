@@ -13,9 +13,30 @@ const App = () => {
   // side effect in a component, you want to think about which state and/or props it should
   // sync up with, if any.
 
+  useEffect(() => {
+    axios
+      .get("http://swapi.dev/api/people")
+      .then((res) => {
+        console.log(res.data.results);
+        setData(res.data.results);
+      })
+      .catch((e) => {
+        return `${e}. These are not the droids you are looking for!`;
+      });
+  }, []);
+
   return (
     <div className="App">
-      <h1 className="Header">Characters</h1>
+      <h1 className="Header">Bounty List</h1>
+      {data.map((item) => {
+        return (
+          <Character
+            key={data.url}
+            data={item}
+            bounty={Math.random() * 1000000}
+          />
+        );
+      })}
     </div>
   );
 };

@@ -8,3 +8,4 @@ import { worker } from "./mocks/browser";
 worker.start();
 
 ReactDOM.render(<App />, document.getElementById("root"));
+export default Character;
